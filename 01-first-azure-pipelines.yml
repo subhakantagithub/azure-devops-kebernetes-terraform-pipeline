@@ -11,19 +11,30 @@ pool:
 
 # Pipelines > Stages > Jobs  > Tasks
 
-jobs:
-- job: job1
-  steps:
-  - script: echo Hello, world! -> JOB1
-    displayName: 'Run a one-line script'
+stages:
+- stage: devDeploy
+  jobs:
+  - job: job1
+    steps:
+    - bash: echo Dev JOB 1 
+  - job: job2
+    steps:
+    - bash: echo Dev JOB 2
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
-- job: job2
-  steps:
-  - script: ls -ltr
-    displayName: 'Run a one-line script'
+- stage: ditDeploy
+  jobs:
+  - job: job1
+    steps:
+    - bash: echo DIT JOB 1 
 
+- stage: qaDeploy
+  jobs:
+  - job: job1
+    steps:
+    - bash: echo QA JOB 1 
 
+- stage: prodDeploy
+  jobs:
+  - job: job1
+    steps:
+    - bash: echo PROD JOB 1 
