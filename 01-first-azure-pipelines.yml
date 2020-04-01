@@ -37,9 +37,9 @@ stages:
 
 - stage: prodDeploy
   dependsOn:
-     ditDeploy
-     qaDeploy
-     devDeploy
+    - ditDeploy
+    - qaDeploy
+    - devDeploy
   jobs:
   - job: job1
     steps:
