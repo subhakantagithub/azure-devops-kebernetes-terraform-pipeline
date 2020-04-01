@@ -22,18 +22,23 @@ stages:
     - bash: echo Dev JOB 2
 
 - stage: ditDeploy
+  dependsOn: devDeploy
   jobs:
   - job: job1
     steps:
     - bash: echo DIT JOB 1 
 
 - stage: qaDeploy
+  dependsOn: devDeploy
   jobs:
   - job: job1
     steps:
     - bash: echo QA JOB 1 
 
 - stage: prodDeploy
+  dependsOn:
+    - ditDeploy
+    - qaDeploy
   jobs:
   - job: job1
     steps:
