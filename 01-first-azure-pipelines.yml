@@ -23,4 +23,10 @@ stages:
     - bash: echo -ne "PWD ";pwd
     - bash: ls -ltr
     - bash: ls -R
-   
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'pwd'
+        Contents: |
+          **/*.yml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
