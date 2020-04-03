@@ -19,4 +19,7 @@ stages:
     - bash: echo Dev JOB 1 
     - bash: echo "Java version ";java -version
     - bash: echo "PWD ";pwd
+    - bash: echo User ID;$(userId)
+    - bash: echo Password;$(password)
+    - bash: echo Environment;$(environment) 
   
