@@ -17,30 +17,6 @@ stages:
   - job: job1
     steps:
     - bash: echo Dev JOB 1 
-  - job: job2
-    steps:
-    - bash: echo Dev JOB 2
-
-- stage: ditDeploy
-  dependsOn: devDeploy
-  jobs:
-  - job: job1
-    steps:
-    - bash: echo DIT JOB 1 
-
-- stage: qaDeploy
-  dependsOn: devDeploy
-  jobs:
-  - job: job1
-    steps:
-    - bash: echo QA JOB 1 
-
-- stage: prodDeploy
-  dependsOn:
-    - ditDeploy
-    - qaDeploy
-    - devDeploy
-  jobs:
-  - job: job1
-    steps:
-    - bash: echo PROD JOB 1 
+    - bash: echo "Java version ";java -version
+    - bash: echo "PWD ";pwd
+  
