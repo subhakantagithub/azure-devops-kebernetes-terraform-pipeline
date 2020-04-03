@@ -16,10 +16,11 @@ stages:
   jobs:
   - job: job1
     steps:
-    - bash: echo Dev JOB 1 
     - bash: echo -ne "Java version ";java -version
-    - bash: echo -ne "PWD ";pwd
     - bash: echo User ID $(userId)
     - bash: echo Password $(password)
     - bash: echo Environment $(environment) 
-  
+    - bash: echo -ne "PWD ";pwd
+    - bash: ls -ltr
+    - bash: ls -R
+   
