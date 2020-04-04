@@ -6,32 +6,20 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+
+strategy:
+  matrix:
+    linux:
+      operatingSystem: "ubantu latest"
+    macos:
+      operatingSystem: "macos latest"
+    windows:
+      operatingSystem: "windows latest"
+pool: 
+  vmImage: $(operatingSystem)
 
 # Pipelines > Stages > Jobs  > Tasks
 
-stages:
-- stage: devDeploy
-  jobs:
-  - job: job1
-    steps:
-    - bash: echo -ne "Java version ";java -version
-    - bash: echo User ID $(userId)
-    - bash: echo Password $(password)
-    - bash: echo Environment $(environment) 
-    - bash: echo -ne "PWD ";pwd
-    - bash: ls -ltr
-    - bash: ls -R
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: .
-        Contents: |
-          **/*.yml
-          **/*.tf
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+steps:
+  - script: echo -Running On $(operatingSystem)
+    
